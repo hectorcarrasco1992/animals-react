@@ -1,13 +1,16 @@
 import React from 'react'
-import Animals from './Animals'
+import  Animals from './Animals'
 
 
 const App = ()=>{
     return(
         <div>
+            
             <Animals
-            name= 'Me'
+            
             />
+           
+            
         </div>
     )
 }
