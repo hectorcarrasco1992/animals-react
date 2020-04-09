@@ -22,18 +22,24 @@ class Animals extends Component{
         super()
         this.state={
             image:'./images/tiger.jpeg',
-            type:'',
-            name:'',
-            description:'',
-            animalId:''
+            type:'Cat',
+            name:'Tiger',
+            description:'Brolic Cat',
+            animalId:'1'
             
         }
     }
 
-    render(){
+    render(props){
         return(
             <div>
                 <img src={this.state.image} alt="..." style={{width:300,height:300}}/>
+                <p>Type:{this.state.type}</p>
+                <h3>Name:{this.state.name}</h3>
+                <p>Description:{this.state.description}</p>
+                <p>Animal Id:{this.state.animalId}</p>
+
+
             </div>
         )
     }

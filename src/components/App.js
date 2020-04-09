@@ -5,7 +5,9 @@ import Animals from './Animals'
 const App = ()=>{
     return(
         <div>
-            <Animals/>
+            <Animals
+            name= 'Me'
+            />
         </div>
     )
 }
