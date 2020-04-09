@@ -21,7 +21,9 @@ class Animals extends Component{
     constructor(){
         super()
         this.state={
-            animalArray
+            animalArray,
+            likes = [],
+            dislikes=[]
             
         }
     }
