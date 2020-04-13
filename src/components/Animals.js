@@ -96,17 +96,7 @@ class Animals extends Component {
         return (
             <div className='animal-page'>
                 <div style={{display: 'flex', flexDirection: 'column'}}>
-                    <div>
-                        <form className="ui form search">
-                            <div className="field">
-                            <input 
-                                onChange={this.handleChange} 
-                                type="text" 
-                                placeholder="Search..." 
-                                value={this.state.searchTerm} />
-                            </div>
-                        </form>
-                    </div>
+                    
                     <div className='animal'>
                         {animal}
                     </div>
