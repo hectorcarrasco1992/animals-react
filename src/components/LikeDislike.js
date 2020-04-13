@@ -1,9 +1,9 @@
 import React from 'react';
-import sidebar from './Side'
+import Side from './Side'
 import './LikeDislike.css'
 // import './Sidebars.css';
 
-const likeDislike = (props) => (
+const LikeDislike = (props) => (
     <div className='side'>
         <div>
             <h3>Likes</h3>
@@ -25,12 +25,12 @@ const likeDislike = (props) => (
             <ul style={{listStyleType: 'none'}}>
             {props.dislikes.length > 0 ? props.dislikes.map(({image, name, animalId}) => {
                     return (
-                        <sidebar key={animalId}>
+                        <Side key={animalId}>
                             <div className='sidecard' onClick={() => props.deleteDislike(animalId)}>
                                 <img src={image} alt="..." />
                                 <p>{name}</p>
                             </div>
-                        </sidebar>
+                        </Side>
                     )
                 }) : <h6>You Lack Hate</h6>}
             </ul>
@@ -40,4 +40,4 @@ const likeDislike = (props) => (
 
 
 
-export default likeDislike;
+export default LikeDislike;

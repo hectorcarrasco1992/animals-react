@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Card from './Card';
-import likeDislike from './LikeDislike';
+import LikeDislike from './LikeDislike';
 import './animals.css'
 
 
@@ -111,7 +111,7 @@ class Animals extends Component {
                         {animal}
                     </div>
                 </div>
-            <likeDislike 
+            <LikeDislike 
                 likes={this.state.likes}
                 dislikes={this.state.dislikes}
                 deleteLike={this.deleteLikeHandler}

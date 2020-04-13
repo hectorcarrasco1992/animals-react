@@ -1,6 +1,6 @@
 import React from 'react';
 
-const sidebar = (props) => {
+const Side = (props) => {
     return (
         <li className="sidebar">
             {props.children}
@@ -8,4 +8,4 @@ const sidebar = (props) => {
     )
 }
 
-export default sidebar
+export default Side
