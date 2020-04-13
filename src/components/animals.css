@@ -1,0 +1,16 @@
+.animal {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    padding-left: 20px;
+}
+
+.animal-page {
+    display: flex;
+}
+
+.search {
+    padding-left: 50px;
+    padding-bottom: 20px;
+    width: 250px;
+}

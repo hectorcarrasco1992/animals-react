@@ -1,7 +1,10 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import Card from './Card';
+import likeDislike from './LikeDislike';
+import './animals.css'
 
 
-let animalArray= [
+let animals= [
     {image:'./images/tiger.jpeg',type:'Cat',name:'Tiger',description:'Brolic Cat',animalId:'1'},
     {image:'./images/lion.jpeg',type:'Cat',name:'Lion',description:'King Cat',animalId:'2'},
     {image:'./images/panther.jpeg',type:'Cat',name:'Panther',description:'Wakanda Idol',animalId:'3'},
@@ -17,37 +20,106 @@ let animalArray= [
 
 ]
 
-class Animals extends Component{
-    constructor(){
-        super()
-        this.state={
-            animalArray,
-            likes = [],
-            dislikes=[]
-            
-        }
+const searchIt = (term) => (item) => item.type.toLowerCase().includes(term.toLowerCase());
+
+class Animals extends Component {
+    state = {
+        animals: animals,
+        likes: [],
+        dislikes: [],
+        searchTerm: ''
     }
 
-    render(){
-        return(
-            <div>
+    likeHandler = (id) => {
+        let likeState = [...this.state.likes];
+        let dislikeState = [...this.state.dislikes];
 
-                {this.state.animalArray.map(({image,type,name,description,animalId})=>{
-                    return(
-                        <div>
-                            <img src={image} alt="..." style={{width:300,height:300}}/>
-                            <p>Type:{type}</p>
-                            <p>Name:{name}</p>
-                            <p>Description:{description}</p>
-                            <p>AnimalId:{animalId}</p>
-                        </div>
-                    )
-                })}
+        if (likeState.some(obj => obj.animalId === id) || dislikeState.some(obj => obj.animalId === id)) {
+            return;
+        } else {
+            likeState.push(this.state.animals.filter(({animalId}) => animalId === id)[0]);
+            this.setState({ likes: likeState });
+        };
+    };
+    
+    dislikeHandler = (id) => {
+        let likeState = [...this.state.likes];
+        let dislikeState = [...this.state.dislikes];
 
+        if (likeState.some(obj => obj.animalId === id) || dislikeState.some(obj => obj.animalId === id)) {
+            return;
+        } else {
+            dislikeState.push(this.state.animals.filter(({animalId}) => animalId === id)[0]);
+            this.setState({ dislikes: dislikeState });
+        };
+    };
 
+    discardHandler = (id) => {
+        const discardedAnimal = [...this.state.animals].filter(({animalId}) => animalId !== id);
+        const updateLike = [...this.state.likes].filter(({animalId}) => animalId !== id);
+        const updateDislike = [...this.state.dislikes].filter(({animalId}) => animalId !== id);
+
+        this.setState({ animals: discardedAnimal, likes: updateLike, dislikes: updateDislike });
+    };
+
+    deleteLikeHandler = (id) => {
+        const deletedAnimal = [...this.state.likes].filter(({animalId}) => animalId !== id);
+        this.setState({ likes: deletedAnimal });
+    };
+
+    deleteDislikeHandler = (id) => {
+        const deletedAnimal = [...this.state.dislikes].filter(({animalId}) => animalId !== id);
+        this.setState({ dislikes: deletedAnimal });
+    };
+
+    handleChange = (event) => {
+        this.setState({ searchTerm: event.target.value });
+    };
+
+    render() {
+        let animal = this.state.animals.filter(searchIt(this.state.searchTerm)).map(({image, type, name, description, animalId}) => {
+            return (
+                <div key={animalId}>
+                    <Card 
+                        image={image}
+                        name={name}
+                        type={type}
+                        description={description}
+                        like={() => this.likeHandler(animalId)}
+                        dislike={() => this.dislikeHandler(animalId)}
+                        discard={() => this.discardHandler(animalId)}
+                    />
+                </div>
+            );
+        });
+
+        return (
+            <div className='animal-page'>
+                <div style={{display: 'flex', flexDirection: 'column'}}>
+                    <div>
+                        <form className="ui form search">
+                            <div className="field">
+                            <input 
+                                onChange={this.handleChange} 
+                                type="text" 
+                                placeholder="Search..." 
+                                value={this.state.searchTerm} />
+                            </div>
+                        </form>
+                    </div>
+                    <div className='animal'>
+                        {animal}
+                    </div>
+                </div>
+            <likeDislike 
+                likes={this.state.likes}
+                dislikes={this.state.dislikes}
+                deleteLike={this.deleteLikeHandler}
+                deleteDislike={this.deleteDislikeHandler}
+                />
             </div>
-        )
-    }
-}
+        );
+    };
+};
 
-export default Animals
+export default Animals;

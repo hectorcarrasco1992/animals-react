@@ -1,18 +1,11 @@
-import React from 'react'
-import  Animals from './Animals'
+import React from 'react';
+import Animals from './Animals';
 
+const App = () => (
+    <div>
+        <h1 style={{paddingTop: '50px', paddingLeft: '50px'}}>Animals just cuz</h1>
+        <Animals />
+    </div>
+);
 
-const App = ()=>{
-    return(
-        <div>
-            
-            <Animals
-            
-            />
-           
-            
-        </div>
-    )
-}
-
-export default App
+export default App;
