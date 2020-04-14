@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Card from './Card';
 import LikeDislike from './LikeDislike';
 import './animals.css'
+import searchIt from './Search'
 
 
 let animals= [
@@ -20,7 +21,7 @@ let animals= [
 
 ]
 
-const searchIt = (term) => (item) => item.type.toLowerCase().includes(term.toLowerCase());
+// const searchIt = (term) => (item) => item.type.toLowerCase().includes(term.toLowerCase());
 
 class Animals extends Component {
     state = {
@@ -96,7 +97,7 @@ class Animals extends Component {
         return (
             <div className='animal-page'>
                 <div style={{display: 'flex', flexDirection: 'column'}}>
-                    
+                         
                     <div className='animal'>
                         {animal}
                     </div>
